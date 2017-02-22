@@ -1,0 +1,26 @@
+
+.scoreHeader {    
+    padding: 15px;    
+    background-color: #62d2d5;
+    color: floralwhite;
+}
+
+.frame {    
+    display: inline-block;    
+    box-sizing: border-box;
+    width: 40px;
+    text-align: center;
+    color: #373a3c;
+}
+
+.currentFrame {
+    border-radius: 3px;
+    background-color: #d6e5ff;
+}
+
+.currentGameFrame {
+    border: 1px solid darkgreen;
+    box-sizing: border-box;
+    padding: 0px 15px;
+    width: 150px;
+}
