@@ -1,6 +1,23 @@
+import { PLAYERS_REGISTRATION, GAME_IN_PROGRESS, GAME_WINNER, GAME_SESSION_DONE } from '../../utils/constants';
+
 var TOTAL_FRAMES = 10;
+var GamePhasesQueue = [PLAYERS_REGISTRATION, GAME_IN_PROGRESS, GAME_SESSION_DONE, GAME_WINNER];
 
 export default {
+    /**
+     * 
+     * @param {String} currentGamePhase     
+     * @returns {String}
+     */
+    getNextPhaseAfter(currentGamePhase) {
+        let index = GamePhasesQueue.indexOf(currentGamePhase);
+
+        if (index === -1 || index >= GamePhasesQueue.length - 1) {
+            throw new RangeError('Current phase `{currentGamePhase}` is the last in queue.');
+        }
+
+        return GamePhasesQueue[index + 1];
+    },
 
     /**
      * 

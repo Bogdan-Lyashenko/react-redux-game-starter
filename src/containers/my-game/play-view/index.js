@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { doPlayerNextStep } from '../../../actions';
+import { doPlayerNextStep, doAutoPlay } from '../../../actions';
 import GameBoard from '../../../components/game-page/game-board/';
 import { connect } from 'react-redux';
 
@@ -20,13 +20,7 @@ class PlayView extends Component {
     }
 
     handleAutoPlay() {
-        this.props.dispatch(doPlayerNextStep()).then((game) => {
-            setTimeout(() => {
-                if (!game.isGameSessionDone) {
-                    this.handleAutoPlay()
-                }
-            }, 100);
-        });
+        this.props.dispatch(doAutoPlay());
     }
 
     render() {

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { restartGame } from '../../../actions'
+import { restartGame, showWinner } from '../../../actions'
+import GameEnd from '../../../components/game-page/game-end/';
+
 import { connect } from 'react-redux'
 
 import './finish-view.css';
 
 class FinishView extends Component {
+    componentDidMount() {
+        this.props.dispatch(showWinner());
+    }
 
     render() {
-        let winner = this.props.winner;
-
         return (            
-            <div className="playView">
-                <div>
-                    <h1> Player <i>{winner.displayName}</i> won!. Score - <b>{winner.score}</b>.</h1>
-                </div>
-                <button className="btn" onClick={()=>this.props.dispatch(restartGame())}>Restart</button>
+            <div className="finishView">
+                <GameEnd winner={this.props.winner} onGameRestart={()=>this.props.dispatch(restartGame())} />
             </div>
         );
     }

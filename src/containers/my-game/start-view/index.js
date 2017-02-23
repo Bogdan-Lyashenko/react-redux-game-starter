@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { addPlayer, startGame} from '../../../actions'
+import { addPlayer, gotoNextGamePhase} from '../../../actions'
 
 import PlayersRegistration from '../../../components/game-page/players-registration/';
 
@@ -13,7 +13,7 @@ class StartView extends Component {
                 <PlayersRegistration 
                     players={this.props.game.players}
                     addPlayer={(name, frames)=> this.props.dispatch(addPlayer(name, frames)) }
-                    onStartClick={() => this.props.dispatch(startGame(true)) }/>                
+                    onStartClick={() => this.props.dispatch(gotoNextGamePhase()) }/>                
             </div>
         );
     }

@@ -1,13 +1,14 @@
-import { ADD_PLAYER, START_GAME, RESTART_GAME, DO_PLAYER_NEXT_STEP } from '../actions/actionTypes';
+import { ADD_PLAYER, GO_TO_NEXT_GAME_PHASE, SHOW_WINNER, RESTART_GAME, DO_PLAYER_NEXT_STEP } from '../actions/actionTypes';
+import { PLAYERS_REGISTRATION } from '../utils/constants';
 import GameLogic from './logic/myGameLogic';
 
 const initialState = {
+    players: [],    
+    winner: null,
+
     currentFrame: 0,
     currentPlayerIndex: 0,
-    players: [],
-    isGameSessionDone: false,
-    isGameStarted: false,
-    winner: null
+    currentGamePhase: PLAYERS_REGISTRATION
 };
 
 export default (state = initialState, action) => {
@@ -26,22 +27,29 @@ export default (state = initialState, action) => {
                 ]
             };
 
-        case START_GAME:
+        case GO_TO_NEXT_GAME_PHASE:
             return {
                 ...state,
-                isGameStarted: action.isGameStarted
+                currentGamePhase: GameLogic.getNextPhaseAfter(state.currentGamePhase)
             };
 
         case RESTART_GAME:
             return {
                 ...initialState
             };
+
+        case SHOW_WINNER:
+            return {
+                ...state,
+                winner: GameLogic.getWinner(state.players)
+            }
             
         case DO_PLAYER_NEXT_STEP:
             let players = [].concat(state.players),
                 currentPlayer = {...players[state.currentPlayerIndex]},
                 currentFrame = state.currentFrame,
-                currentPlayerIndex = state.currentPlayerIndex;
+                currentPlayerIndex = state.currentPlayerIndex,
+                currentGamePhase = state.currentGamePhase;
 
             currentPlayer.frames = GameLogic.getPlayerStepFrames(currentPlayer.frames, state.currentFrame);
             currentPlayer.score = GameLogic.getPlayerScore(currentPlayer.frames);
@@ -55,16 +63,17 @@ export default (state = initialState, action) => {
                 currentPlayerIndex = GameLogic.computeNextPlayerIndex(currentPlayerIndex, players);
             }
 
+            if (GameLogic.isGameSessionDone(currentFrame)) {
+                currentGamePhase = GameLogic.getNextPhaseAfter(state.currentGamePhase);
+            }
+
             return {
                 ...state,
                 players,
                 currentPlayerIndex,
                 currentFrame,
-                isGameSessionDone: GameLogic.isGameSessionDone(currentFrame),
-                winner: GameLogic.getWinner(players)
+                currentGamePhase
             };
-            
-            break;
         
         default:
             return state
