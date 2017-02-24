@@ -1,9 +1,22 @@
-import { PLAYERS_REGISTRATION, GAME_IN_PROGRESS, GAME_WINNER, GAME_SESSION_DONE } from '../../utils/constants';
+import { PLAYERS_REGISTRATION, GAME_IN_PROGRESS, GAME_WINNER, GAME_SESSION_DONE, TOTAL_FRAMES_NUMBER } from '../../utils/constants';
 
-var TOTAL_FRAMES = 10;
 var GamePhasesQueue = [PLAYERS_REGISTRATION, GAME_IN_PROGRESS, GAME_SESSION_DONE, GAME_WINNER];
 
 export default {
+
+    /**    
+     * 
+     * @param {Object} player
+     * @param {Object} currentFrame
+     * @returns {Object}
+     */
+    getPlayerAfterStep(player, currentFrame) {
+        let frames = this.getPlayerStepFrames(player.frames, currentFrame);
+        let score = this.getPlayerScore(frames);
+
+        return {...player, frames, score};
+    },
+
     /**
      * 
      * @param {String} currentGamePhase     
@@ -79,7 +92,7 @@ export default {
      * @param {Number} totalFame
      * @returns {boolean}
      */
-    isGameSessionDone(currentFrame, totalFame = TOTAL_FRAMES) {
+    isGameSessionDone(currentFrame, totalFame = TOTAL_FRAMES_NUMBER) {
         return currentFrame >= totalFame;
     },
 

@@ -45,17 +45,14 @@ export default (state = initialState, action) => {
             }
             
         case DO_PLAYER_NEXT_STEP:
-            let players = [].concat(state.players),
-                currentPlayer = {...players[state.currentPlayerIndex]},
+            let players = [].concat(state.players),                
                 currentFrame = state.currentFrame,
                 currentPlayerIndex = state.currentPlayerIndex,
                 currentGamePhase = state.currentGamePhase;
-
-            currentPlayer.frames = GameLogic.getPlayerStepFrames(currentPlayer.frames, state.currentFrame);
-            currentPlayer.score = GameLogic.getPlayerScore(currentPlayer.frames);
-			players[state.currentPlayerIndex] = currentPlayer;
+                
+            players[state.currentPlayerIndex] = GameLogic.getPlayerAfterStep(players[state.currentPlayerIndex], state.currentFrame);
 			
-            if (GameLogic.isPlayerStepDone(currentPlayer, currentFrame)) {
+            if (GameLogic.isPlayerStepDone(players[state.currentPlayerIndex], currentFrame)) {
                 if (GameLogic.isCurrentGameFrameDone(currentPlayerIndex, players)) {
                     currentFrame = GameLogic.getNextGameFrame(currentFrame);
                 }

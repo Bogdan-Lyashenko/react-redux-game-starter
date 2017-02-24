@@ -5,3 +5,5 @@ export const GAME_IN_PROGRESS = 'GAME_IN_PROGRESS';
 export const GAME_SESSION_DONE = 'GAME_SESSION_DONE';
 
 export const GAME_WINNER = 'GAME_WINNER';
+
+export const TOTAL_FRAMES_NUMBER = 10;

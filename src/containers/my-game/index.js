@@ -53,11 +53,6 @@ MyGame.propTypes = {
     currentGamePhase: PropTypes.string.isRequired
 };
 
-/**
- *
- * @param {Object} state
- * @returns {{currentGamePhase: *}}
- */
 const mapStateToProps = (state) => {
     return {
         currentGamePhase: state.game.currentGamePhase

@@ -6,7 +6,7 @@ class ScoreHeader extends Component {
         super(props);
 
         this.frames = [];
-        for (let i = 0; i < this.props.totalFame; i++) {
+        for (let i = 0; i < this.props.totalFrames; i++) {
             this.frames.push({name: i + 1, index: i});
         }
     }

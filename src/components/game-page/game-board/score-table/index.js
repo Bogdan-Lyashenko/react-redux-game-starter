@@ -10,13 +10,12 @@ class ScoreTable extends Component {
         return (
             <div className="scoreTable">
                 <table className="table-bordered table-condensed">
-                    <ScoreHeader totalFame={10}
+                    <ScoreHeader totalFrames={this.props.totalFrames}
                      currentFrame={this.props.currentFrame}
                      currentGame={'Game 1'} />
 
                     <ScoreRows
-                     players={this.props.players}
-                     totalFame={10}
+                     players={this.props.players}                     
                      currentFrame={this.props.currentFrame}
                      currentPlayer={this.props.players[this.props.currentPlayerIndex]}/>
                 </table>
@@ -27,6 +26,7 @@ class ScoreTable extends Component {
 
 ScoreTable.propTypes = {
     players: PropTypes.array.isRequired,
+    totalFrames: PropTypes.number.isRequired,
     currentFrame: PropTypes.number.isRequired,
     currentPlayerIndex: PropTypes.number.isRequired
 };

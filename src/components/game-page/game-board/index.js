@@ -8,6 +8,7 @@ class GameBoard extends Component {
                 <div>
                     <ScoreTable
                         players={this.props.players}
+                        totalFrames={this.props.totalFrames}
                         currentPlayerIndex={this.props.currentPlayerIndex}
                         currentFrame={this.props.currentFrame} />
 
@@ -21,8 +22,9 @@ class GameBoard extends Component {
     }
 }
 
-GameBoard.propTypes = {
+GameBoard.propTypes = {    
     players: PropTypes.array.isRequired,
+    totalFrames: PropTypes.number.isRequired,
     currentFrame: PropTypes.number.isRequired,
     currentPlayerIndex: PropTypes.number.isRequired,
     onPlayerStep: PropTypes.func.isRequired,

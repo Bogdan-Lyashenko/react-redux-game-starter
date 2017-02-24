@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { doPlayerNextStep, doAutoPlay } from '../../../actions';
 import GameBoard from '../../../components/game-page/game-board/';
+import { TOTAL_FRAMES_NUMBER } from '../../../utils/constants';
 import { connect } from 'react-redux';
 
 import './play-view.css';
@@ -27,6 +28,7 @@ class PlayView extends Component {
         return (
             <div className="playView">
                 <GameBoard
+                    totalFrames={TOTAL_FRAMES_NUMBER}
                     players={this.props.players}
                     currentPlayerIndex={this.props.currentPlayerIndex}
                     currentFrame={this.props.currentFrame}
