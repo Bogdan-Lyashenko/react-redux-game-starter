@@ -1,7 +1,13 @@
 {
-  "name": "my-game",
+  "name": "react-redux-game-starter",
   "version": "0.1.0",
-  "private": true,
+  "description": "Boilerplate for a game based on React+Redux.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bogdan-Lyashenko/react-redux-game-starter.git"
+  },
+  "author": "Bohdan Liashenko <lyashenkoinc@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "react-scripts": "0.9.0"
   },
