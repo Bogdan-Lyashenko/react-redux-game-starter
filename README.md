@@ -127,9 +127,12 @@ getNextGameFrame(currentFrame) {
  */
 isGameSessionDone(currentFrame, totalFame = TOTAL_FRAMES_NUMBER) {
     return currentFrame >= totalFame;
-},
-...
+}
+
 ```
+
+## Demo
+![Current demo](https://media.giphy.com/media/3o84TTbe8JagrCXdYs/source.gif)
 
 ## TODO
 Tests
