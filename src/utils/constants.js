@@ -7,3 +7,7 @@ export const GAME_SESSION_DONE = 'GAME_SESSION_DONE';
 export const GAME_WINNER = 'GAME_WINNER';
 
 export const TOTAL_FRAMES_NUMBER = 10;
+
+export const DELAY_ON_SESSION_DONE = 2000;
+
+export const DELAY_ON_AUTO_PLAY_STEP = 150;

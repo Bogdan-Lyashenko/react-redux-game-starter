@@ -1,5 +1,5 @@
 import { ADD_PLAYER, GO_TO_NEXT_GAME_PHASE, RESTART_GAME, DO_PLAYER_NEXT_STEP, SHOW_WINNER } from './actionTypes';
-import { GAME_IN_PROGRESS, GAME_SESSION_DONE } from '../utils/constants';
+import { GAME_IN_PROGRESS, GAME_SESSION_DONE, DELAY_ON_SESSION_DONE, DELAY_ON_AUTO_PLAY_STEP} from '../utils/constants';
 import { delay } from '../utils/';
 
 let nextPlayerId = 0;
@@ -39,7 +39,7 @@ export const doPlayerNextStep = () => {
         });
 
         if (getState().game.currentGamePhase === GAME_SESSION_DONE) {
-            dispatch(gotoNextGamePhaseWithDelay(2000));
+            dispatch(gotoNextGamePhaseWithDelay(DELAY_ON_SESSION_DONE));
         }
     };
 };
@@ -52,6 +52,6 @@ export const doAutoPlay = ()=> {
             if(getState().game.currentGamePhase === GAME_IN_PROGRESS) {
                 dispatch(doAutoPlay());
             }
-        }, 20);
+        }, DELAY_ON_AUTO_PLAY_STEP);
     }
 }
