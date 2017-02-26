@@ -132,7 +132,7 @@ isGameSessionDone(currentFrame, totalFame = TOTAL_FRAMES_NUMBER) {
 ```
 
 ## Demo
-![Current demo](https://media.giphy.com/media/3o84TTbe8JagrCXdYs/source.gif)
+Please check */demo.gif*
 
 ## TODO
 Tests
